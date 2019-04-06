@@ -1,7 +1,8 @@
 (
 NOTE:
 Obtained from https://cs61.seas.harvard.edu/site/2018/WeensyOS/
-This code illustrates essential OS concepts: x86_64, processes, and memory management. 
+
+This code illustrates essential OS concepts: x86_64 arch, ELF, loaders, processes, and memory management. 
 
 Great code by Dr. Eddie Kohler. 
 )
