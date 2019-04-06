@@ -1,3 +1,5 @@
+(Obtained from https://cs61.seas.harvard.edu/site/2018/WeensyOS/)
+
 WEENSYOS
 ========
 
