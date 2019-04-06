@@ -4,7 +4,10 @@ Obtained from https://cs61.seas.harvard.edu/site/2018/WeensyOS/
 
 This code illustrates essential OS concepts: x86_64 arch, ELF, loaders, processes, and memory management. 
 
-Great code by Dr. Eddie Kohler. 
+Great code by Dr. Eddie Kohler! 
+
+Tested on Ubuntu 16.04 x86_64.
+
 )
 
 WEENSYOS
