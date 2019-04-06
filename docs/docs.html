@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="docs_files/bootstrap.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="docs_files/katex.css" integrity="sha384-VEnyslhHLHiYPca9KFkBB3CMeslnM9CzwjxsEbZTeA21JBm7tdLwKoZmCt3cZTYD" crossorigin="anonymous">
+    <link rel="stylesheet" href="docs_files/cs161.css">
+    <title>Problem set 4 – CS 61 2018</title>
+  <script async="" src="docs_files/async-ads.js"></script><script src="docs_files/cse_element__en.js" type="text/javascript"></script><link type="text/css" rel="stylesheet" href="docs_files/defaulten.css"><link type="text/css" rel="stylesheet" href="docs_files/default.css"><style type="text/css">.gsc-control-cse{font-family:arial, sans-serif}.gsc-control-cse .gsc-table-result{font-family:arial, sans-serif}.gsc-control-cse{border-color:#FFFFFF;background-color:#FFFFFF}input.gsc-input,.gsc-input-box,.gsc-input-box-hover,.gsc-input-box-focus{border-color:#D9D9D9}.gsc-search-button-v2,.gsc-search-button-v2:hover,.gsc-search-button-v2:focus{border-color:#666666;background-color:#CECECE;background-image:none;filter:none}.gsc-search-button-v2 svg{fill:#FFFFFF}.gsc-tabHeader.gsc-tabhInactive{border-color:#CCCCCC;background-color:#FFFFFF}.gsc-tabHeader.gsc-tabhActive{border-color:#CCCCCC;border-bottom-color:#FFFFFF;background-color:#FFFFFF}.gsc-tabsArea{border-color:#CCCCCC}.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{border-color:#FFFFFF;background-color:#FFFFFF}.gsc-webResult.gsc-result:hover,.gsc-imageResult:hover{border-color:#FFFFFF;background-color:#FFFFFF}.gs-webResult.gs-result a.gs-title:link,.gs-webResult.gs-result a.gs-title:link b,.gs-imageResult a.gs-title:link,.gs-imageResult a.gs-title:link b{color:#0000CC}.gs-webResult.gs-result a.gs-title:visited,.gs-webResult.gs-result a.gs-title:visited b,.gs-imageResult a.gs-title:visited,.gs-imageResult a.gs-title:visited b{color:#0000CC}.gs-webResult.gs-result a.gs-title:hover,.gs-webResult.gs-result a.gs-title:hover b,.gs-imageResult a.gs-title:hover,.gs-imageResult a.gs-title:hover b{color:#0000CC}.gs-webResult.gs-result a.gs-title:active,.gs-webResult.gs-result a.gs-title:active b,.gs-imageResult a.gs-title:active,.gs-imageResult a.gs-title:active b{color:#0000CC}.gsc-cursor-page{color:#0000CC}a.gsc-trailing-more-results:link{color:#0000CC}.gs-webResult .gs-snippet,.gs-imageResult .gs-snippet,.gs-fileFormatType{color:#000000}.gs-webResult div.gs-visibleUrl,.gs-imageResult div.gs-visibleUrl{color:#008000}.gs-webResult div.gs-visibleUrl-short{color:#008000}.gs-webResult div.gs-visibleUrl-short{display:none}.gs-webResult div.gs-visibleUrl-long{display:block}.gs-promotion div.gs-visibleUrl-short{display:none}.gs-promotion div.gs-visibleUrl-long{display:block}.gsc-cursor-box{border-color:#FFFFFF}.gsc-results .gsc-cursor-box .gsc-cursor-page{border-color:#CCCCCC;background-color:#FFFFFF;color:#0000CC;}.gsc-results .gsc-cursor-box .gsc-cursor-current-page{border-color:#CCCCCC;background-color:#FFFFFF;color:#0000CC;}.gsc-webResult.gsc-result.gsc-promotion{border-color:#336699;background-color:#FFFFFF}.gsc-completion-title{color:#0000CC}.gsc-completion-snippet{color:#000000}.gs-promotion a.gs-title:link,.gs-promotion a.gs-title:link *,.gs-promotion .gs-snippet a:link{color:#0000CC}.gs-promotion a.gs-title:visited,.gs-promotion a.gs-title:visited *,.gs-promotion .gs-snippet a:visited{color:#0000CC}.gs-promotion a.gs-title:hover,.gs-promotion a.gs-title:hover *,.gs-promotion .gs-snippet a:hover{color:#0000CC}.gs-promotion a.gs-title:active,.gs-promotion a.gs-title:active *,.gs-promotion .gs-snippet a:active{color:#0000CC}.gs-promotion .gs-snippet,.gs-promotion .gs-title .gs-promotion-title-right,.gs-promotion .gs-title .gs-promotion-title-right *{color:#000000}.gs-promotion .gs-visibleUrl,.gs-promotion .gs-visibleUrl-short{color:#008000}.gcsc-find-more-on-google{color:#0000CC}.gcsc-find-more-on-google-magnifier{fill:#0000CC}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-moz-user-select:none;white-space:nowrap}.gsst_e{vertical-align:middle;opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gssb_a{padding:0 9px}.gsib_a{padding-right:8px;padding-left:8px}.gsst_a{padding-top:5.5px}.gssb_e{border:0}.gssb_l{margin:5px 0}input.gsc-input::-webkit-input-placeholder{font-size:14px}input.gsc-input:-moz-placeholder{font-size:14px}input.gsc-input::-moz-placeholder{font-size:14px}input.gsc-input:-ms-input-placeholder{font-size:14px}input.gsc-input:focus::-webkit-input-placeholder{color:transparent}input.gsc-input:focus:-moz-placeholder{color:transparent}input.gsc-input:focus::-moz-placeholder{color:transparent}input.gsc-input:focus:-ms-input-placeholder{color:transparent}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style></head>
+  <body>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="https://cs61.seas.harvard.edu/site/">CS 61 2018</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-dropdown-" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Info
+    </a>
+    <div class="dropdown-menu" aria-labelledby="nav-dropdown-">
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Concepts/">Concepts</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/CourseDescription/">Course Description</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Staff/">Course Staff</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Extension/">Extension</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/ZoomOH/">Extension School Zoom Office Hours</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Prerequisites/">Prerequisites</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Resources/">Resources</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Schedule/">Schedule</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Style/">Style</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Textbook/">Textbook</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Infrastructure/">Infrastructure</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/DatarepEx/">Exercises: Data representation</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/AsmEx/">Exercises: Assembly</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/StorageEx/">Exercises: Storage</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/KernelEx/">Exercises: Kernel</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/ShellEx/">Exercises: Shell</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/SynchEx/">Exercises: Synchronization</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/MiscEx/">Exercises: Miscellaneous</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Patterns/">C and C++ Patterns</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/diff/">Diff</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/file-descriptors/">File Descriptors</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/gdb-commands/">GDB Commands</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/gdb/">GDB Introduction</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/git/">Git</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/http/">HTTP</a>
+    
+    </div>
+  </li>
+
+      
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-dropdown-" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Problem sets
+    </a>
+    <div class="dropdown-menu" aria-labelledby="nav-dropdown-">
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Dmalloc/">Problem set 1</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/BinaryBomb/">Problem set 2</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Stdio/">Problem set 3</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/WeensyOS/">Problem set 4</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Shell/">Problem set 5</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Pong/">Problem set 6</a>
+    
+    </div>
+  </li>
+
+      
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-dropdown-" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Lectures
+    </a>
+    <div class="dropdown-menu" aria-labelledby="nav-dropdown-">
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Datarep2/">Data representation 2: Object representation</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Datarep3/">Data representation 3: Layout</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Datarep4/">Data representation 4: Pointers and undefined behavior</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Datarep5/">Data representation 5: Undefined behavior, bitwise operations, arena allocation</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Datarep6/">Data representation 6: Arena allocation</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Asm1/">Assembly 1: Basics</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Asm2/">Assembly 2: Calling convention</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Asm3/">Assembly 3: Optimizations and assembly</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Asm4/">Assembly 4: Buffer overflows</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Storage1/">Storage 1: Caches</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Storage2/">Storage 2: Cache model</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Storage3/">Storage 3: Stdio cache</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Storage4/">Storage 4: Consistency</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Kernel1/">Kernel 1: Robustness and safety</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Kernel2/">Kernel 2: Process isolation and virtual memory</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Kernel3/">Kernel 3: x86-64 page tables and WeensyOS</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Kernel4/">Kernel 4: Protection and isolation</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Kernel5/">Kernel 5: Confused deputy attack, scheduling, and process management</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Shell1/">Shell 1: Process control</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Shell2/">Shell 2: Process creation and interprocess communication</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Shell3/">Shell 3: Sieve of Eratosthenes, polling vs. blocking</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Synch1/">Synchronization 1: Signals, race condition, threads</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Synch2/">Synchronization 2: Mutex, bounded buffers</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Synch3/">Synchronization 3: Mutexes, condition variables, and compare-exchange</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Synch4/">Synchronization 4: Networking and Synchronization</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Synch5/">Synchronization 5: Deadlock and Server Programming</a>
+    
+    </div>
+  </li>
+
+      
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-dropdown-" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Sections
+    </a>
+    <div class="dropdown-menu" aria-labelledby="nav-dropdown-">
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section1/">Section 1</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section2/">Section 2</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section3/">Section 3</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section4/">Section 4</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section5/">Section 5</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section6/">Section 6</a>
+    
+    </div>
+  </li>
+
+      
+      <li class="nav-item"><script type="text/javascript" async="" src="docs_files/cse.js"></script><script>
+  (function() {
+    var cx = '001870065194094800801:cru2ukzhywq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script><div id="___gcse_0"><div class="gsc-control-cse gsc-control-cse-en"><div class="gsc-control-wrapper-cse" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table class="gsc-search-box" cellspacing="0" cellpadding="0"><tbody><tr><td class="gsc-input"><div class="gsc-input-box" id="gsc-iw-id1"><table style="width: 100%; padding: 0px;" id="gs_id50" class="gstl_50 gsc-input" cellspacing="0" cellpadding="0"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" style="width: 100%; padding: 0px; border: medium none; margin: 0px; height: auto; outline: currentcolor none medium;" id="gsc-i-id1" dir="ltr" spellcheck="false"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;" title="Clear search box" role="button"><span class="gscb_a" id="gs_cb50" aria-hidden="true">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>search</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table></form><div class="gsc-results-wrapper-overlay"><div class="gsc-results-close-btn" tabindex="0"></div><div class="gsc-tabsAreaInvisible"><div class="gsc-tabHeader gsc-inline-block gsc-tabhActive">Custom Search</div><span class="gs-spacer"> </span></div><div class="gsc-tabsAreaInvisible"></div><div class="gsc-above-wrapper-area-invisible"><table class="gsc-above-wrapper-area-container" cellspacing="0" cellpadding="0"><tbody><tr><td class="gsc-result-info-container"><div class="gsc-result-info-invisible"></div></td><td class="gsc-orderby-container"><div class="gsc-orderby-invisible"><div class="gsc-orderby-label gsc-inline-block">Sort by:</div><div class="gsc-option-menu-container gsc-inline-block"><div class="gsc-selected-option-container gsc-inline-block"><div class="gsc-selected-option">Relevance</div><div class="gsc-option-selector"></div></div><div class="gsc-option-menu-invisible"><div class="gsc-option-menu-item gsc-option-menu-item-highlighted"><div class="gsc-option">Relevance</div></div><div class="gsc-option-menu-item"><div class="gsc-option">Date</div></div></div></div></div></td></tr></tbody></table></div><div class="gsc-adBlockInvisible"></div><div class="gsc-wrapper"><div class="gsc-adBlockInvisible"></div><div class="gsc-resultsbox-invisible"><div class="gsc-resultsRoot gsc-tabData gsc-tabdActive"><table class="gsc-resultsHeader" cellspacing="0" cellpadding="0"><tbody><tr><td class="gsc-twiddleRegionCell"><div class="gsc-twiddle"><div class="gsc-title">Web</div></div><div class="gsc-stats"></div><div class="gsc-results-selector gsc-all-results-active"><div class="gsc-result-selector gsc-one-result" title="show one result">&nbsp;</div><div class="gsc-result-selector gsc-more-results" title="show more results">&nbsp;</div><div class="gsc-result-selector gsc-all-results" title="show all results">&nbsp;</div></div></td><td class="gsc-configLabelCell"></td></tr></tbody></table><div><div class="gsc-expansionArea"></div></div></div></div></div></div><div class="gsc-modal-background-image" tabindex="0"></div></div></div></div></li>
+    </ul>
+  </div>
+</nav>
+
+
+<img src="docs_files/cs61hello.jpg" class="hellobackground">
+
+
+<div class="container">
+    <h1><a href="https://cs61.seas.harvard.edu/site/2018/WeensyOS/">Problem set 4: WeensyOS</a></h1>
+    <div class="post">
+        <p>In this assignment, you implement process memory isolation, virtual
+memory, and some system calls in a tiny operating system. This will
+introduce you to virtual memory and operating system design.</p>
+
+<ul>
+<li>Due <strong>Wednesday 11/7</strong> 11:59:59pm (extension 1 day later)</li>
+<li>You <strong>must</strong> run this assignment on a Linux machine, such as a
+virtual machine. Running on Mac or a Windows box without a VM is
+not likely to work.</li>
+</ul>
+
+<p>You may want to ponder Chapter 9 of the text. The 64-bit x86 virtual
+memory architecture is described in Section 9.7. The <code>PTE_P</code>, <code>PTE_W</code>,
+and <code>PTE_U</code> bits are shown in Figure 9.23 and discussed in Section
+9.7.1.</p>
+
+<h2 id="get-the-code">Get the code</h2>
+
+<p>Start with the <code>cs61-psets</code> repository you used for <a href="https://cs61.seas.harvard.edu/site/2018/Stdio">Problem Set
+3</a>.</p>
+
+<p>First, ensure that your repository has a <code>handout</code> remote. Type</p>
+
+<p><code>git remote show handout</code></p>
+
+<p>If this reports an error, run</p>
+
+<p><code>git remote add handout git://github.com/cs61/cs61-f18-psets.git</code></p>
+
+<p>Then run <code>git pull handout master</code>. This will
+<a href="https://cs61.seas.harvard.edu/site/ref/git#Merges">merge</a> our Assignment 4 code with your
+previous work. If you have any “conflicts” from Problem Set 3, <a href="https://cs61.seas.harvard.edu/site/ref/git#Conflicts">resolve
+them</a> before continuing further. Run <code>git
+push</code> to save your work back to your personal repository.</p>
+
+<p>You may also create a new <code>cs61-psets</code> repository for this assignment.</p>
+
+<p>Don’t forget to enter your repository URL on the grading server.</p>
+
+<h2 id="initial-state">Initial state</h2>
+
+<p>For this assignment, there is no handy <code>make check</code> functionality.
+Instead, you should run your instance of WeensyOS and visually compare
+it to the images you see below in the assignment.</p>
+
+<p>Run <code>make run</code> in your <code>pset4</code> directory. You should see something like
+this, which shows four versions of the <code>p-allocator</code> process running in
+parallel:</p>
+
+<p></p><figure><img src="docs_files/memos-initial.gif" alt="Initial WeensyOS state"></figure><p></p>
+
+<p>This image loops forever; in an actual run, the bars will move to the
+right and stay there. Don’t worry if your image has different numbers of
+K’s or otherwise has different details.</p>
+
+<p>If your bars run painfully slowly, edit the <code>p-allocator.c</code> file and
+reduce the <code>ALLOC_SLOWDOWN</code> constant.</p>
+
+<p><strong>Stop now to read and understand <code>p-allocator.c</code>.</strong> Here’s what’s going
+on in the physical memory display.</p>
+
+<ul>
+<li>WeensyOS displays the current state of physical and virtual memory.
+Each character represents 4 KB of memory: a single page. There are 2
+MB of physical memory in total. (How many pages is this?)</li>
+<li>WeensyOS runs four processes, 1 through 4. Each process is compiled
+from the same source code (<code>p-allocator.c</code>), but linked to use a
+different region of memory.</li>
+<li>Each process asks the kernel for more heap space, one page at a
+time, until it runs out of room. As usual, each process's heap
+begins just above its code and global data, and ends just below its
+stack. The processes allocate space at different rates: compared to
+Process 1, Process 2 allocates space twice as quickly, Process 3
+goes three times faster, and Process 4 goes four times faster. (A
+random number generator is used, so the exact rates may vary.) The
+marching rows of numbers show how quickly the heap spaces for
+processes 1, 2, 3, and 4 are allocated.</li>
+</ul>
+
+<p>Here are two labeled memory diagrams, showing what the characters mean
+and how memory is arranged.</p>
+
+<p></p><figure><img src="docs_files/memos-physmap.gif" alt="Physical memory map 1"></figure><p></p>
+
+<p></p><figure><img src="docs_files/memos-physmap2.gif" alt="Physical memory map 2"></figure><p></p>
+
+<p>The virtual memory display is similar.</p>
+
+<ul>
+<li>The virtual memory display cycles between the four processes'
+address spaces. However, all the address spaces are the same for
+now.</li>
+<li>Blank spaces in the virtual memory display correspond to unmapped
+addresses. If a process (or the kernel) tries to access such an
+address, the processor will page fault.</li>
+<li>The character shown at address X in the virtual memory display
+identifies the owner of the corresponding <em>physical</em> page.</li>
+<li>In the virtual memory display, a character is
+<b style="color:#000000;background-color:#ff0000">reverse video</b>
+if an application process is allowed to access the corresponding
+address. Initially, <em>any</em> process can modify <em>all</em> of
+physical memory, including the kernel. Memory is not properly
+isolated.</li>
+</ul>
+
+<h2 id="goal">Goal</h2>
+
+<p>You will implement complete and correct memory isolation for WeensyOS
+processes. Then you'll implement full virtual memory, which will improve
+utilization. You'll implement fork—creating new processes at runtime—and
+exit—destroying processes at runtime.</p>
+
+<p>We need to provide a lot of support code for this assignment, but the
+code you write will be limited. All your code goes in <code>kernel.cc</code>.</p>
+
+<h2 id="notes">Notes</h2>
+
+<h3 id="running-weensyos">Running WeensyOS</h3>
+
+<p>If QEMU’s default display causes accessibility problems, you will want to run
+<code>make run-console</code>.</p>
+
+<p>There are several ways to <strong>debug</strong> WeensyOS. We recommend:</p>
+
+<ul>
+<li><p>Add <code>log_printf</code> statements to your code (the output of <code>log_printf</code> is
+written to the file <code>log.txt</code>).</p></li>
+
+<li><p>Use assertions to catch problems early (for instance, call
+<code>check_page_table</code> to test a page table for obvious issues, or add your
+own).</p></li>
+
+<li><p>Sometimes a mistake will cause the OS to crash hard and reboot. Use <code>make
+D=1 run 2&gt;debuglog.txt</code> to get additional verbose debugging output. Search
+through <code>debuglog.txt</code> for <code>check_exception</code> lines to see where the
+exceptions occur.</p></li>
+
+<li><p>Printouts such as assertions and fault reports include the virtual address
+of the faulting instruction, but they do not always include symbol
+information. Use files <code>obj/kernel.asm</code> (for the kernel) and
+<code>obj/p-PROCESSNAME.asm</code> (for processes) to map instruction addresses to
+instructions.</p></li>
+
+<li><p>You can track down the worst problems using infinite loops. Say that you’re
+not sure whether a reboot-causing problem occurs before or after line 100 in
+your fork function. So add an infinite loop at line 100! If the problem
+<em>does</em> occur, then the problem is located before line 100; if the OS hangs
+instead, then the problem is located after line 100.</p></li>
+</ul>
+
+<h3 id="memory-system-layout">Memory system layout</h3>
+
+<p>WeensyOS memory system layout is described by several
+constants.</p>
+
+<table class="nowrap1 wikitable">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>KERNEL_START_ADDR</code></td>
+<td>Start of kernel code.</td>
+</tr>
+
+<tr>
+<td><code>KERNEL_STACK_TOP</code></td>
+<td>Top of kernel stack. The kernel stack is one page long.</td>
+</tr>
+
+<tr>
+<td><code>console</code></td>
+<td>CGA console memory.</td>
+</tr>
+
+<tr>
+<td><code>PROC_START_ADDR</code></td>
+<td>Start of application code. Applications should not be able to access memory below <code>PROC_START_ADDR</code>, except for the single page at <code>console</code>.</td>
+</tr>
+
+<tr>
+<td><code>MEMSIZE_PHYSICAL</code></td>
+<td>Size of physical memory in bytes. WeensyOS does not support physical addresses ≥ <code>MEMSIZE_PHYSICAL</code>. Equals 0x200000 (2MB).</td>
+</tr>
+
+<tr>
+<td><code>MEMSIZE_VIRTUAL</code></td>
+<td>Size of virtual memory. WeensyOS does not support virtual addresses ≥ <code>MEMSIZE_VIRTUAL</code>. Equals 0x300000 (3MB).</td>
+</tr>
+
+<tr>
+<td><code>PAGESIZE</code></td>
+<td>Size of a memory page. Equals 4096 (or, equivalently, <code>1 &lt;&lt; 12</code>).</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="kernel-and-process-address-spaces">Kernel and process address spaces</h3>
+
+<p>WeensyOS begins with the kernel and all processes sharing a single
+address space. This is defined by the <code>kernel_pagetable</code> page table.
+<code>kernel_pagetable</code> is initialized to the <em>identity mapping</em>: virtual
+address X maps to physical address X.</p>
+
+<p>As you work through the pset, you will shift processes to use
+independent address spaces, where each process can access only a
+subset of physical memory.</p>
+
+<p>The kernel, though, still needs the ability to access all of physical memory.
+Therefore, all kernel functions run using the <code>kernel_pagetable</code> page table.
+Thus, in kernel functions, each virtual address maps to the physical address
+with the same number. The <code>exception_entry</code> and <code>syscall_entry</code> assembly codes
+explicitly install <code>kernel_pagetable</code> when they begin, and <code>exception_return</code>
+and the <code>syscall</code> return path install the process’s page table as they exit.</p>
+
+<p>Each process page table <em>must</em> contain kernel mappings for the kernel stack
+and for the <code>exception_entry</code> and <code>syscall_entry</code> code paths.</p>
+
+<h2 id="step-1-kernel-isolation">Step 1: Kernel isolation</h2>
+
+<p>WeensyOS processes could stomp all over the kernel’s memory if they
+wanted. Better stop that. Change <code>kernel</code>, the kernel initialization
+function, so that kernel memory is inaccessible to applications—except
+for the memory holding the CGA console (the single page at <code>(uintptr_t)
+console == 0xB8000</code>).</p>
+
+<p>When you are done, WeensyOS should look like this. In the virtual map,
+kernel memory is no longer reverse-video, since the user can’t access
+it. Note the lonely CGA console memory block.</p>
+
+<p></p><figure><img src="docs_files/memos-kernelprot.gif" alt="Kernel isolation"></figure><p></p>
+
+<p>Hints:</p>
+
+<ul>
+<li><p>Use <code>vmiter</code>, which was discussed in <a href="https://cs61.seas.harvard.edu/site/2018/Section4/">Section 4</a>. (The handout code uses
+<code>vmiter</code> as well, in <code>k-hardware.cc</code>; look for a loop in <code>init_cpu_state</code>,
+for example. We do not recommend trying to understand how <code>vmiter</code> is
+implemented, but <code>k-vmiter.hh</code> does document its methods.)</p></li>
+
+<li><p>The <code>perm</code> argument to <code>vmiter::map</code> is a bitwise-or of zero or more <code>PTE</code>
+flags, <code>PTE_P</code>, <code>PTE_W</code>, and <code>PTE_U</code>. <code>PTE_P</code> marks <strong>P</strong>resent pages (pages
+that are mapped). <code>PTE_W</code> marks <strong>W</strong>ritable pages. <code>PTE_U</code> marks
+<strong>U</strong>ser-accessible pages—pages accessible to applications. You want kernel
+memory to be mapped with permissions <code>PTE_P|PTE_W</code>, which will prevent
+applications from reading or writing the memory, while allowing the kernel
+to both read and write.</p></li>
+
+<li><p>Make sure that your <code>sys_page_alloc</code> system call preserves kernel isolation:
+Applications shouldn’t be able to use <code>sys_page_alloc</code> to screw up the
+kernel. This requires changes to the <code>SYSCALL_PAGE_ALLOC</code> case in <code>syscall</code>.</p></li>
+</ul>
+
+<h2 id="step-2-isolated-address-spaces">Step 2: Isolated address spaces</h2>
+
+<p>Implement process isolation by giving each process its own independent
+page table. Your OS should look like this:</p>
+
+<p></p><figure><img src="docs_files/memos-isolated.gif" alt="Per-process isolation"></figure><p></p>
+
+<p>Thus, each process only has permission to access its own pages. You can
+tell this because only its own pages are shown in reverse video.</p>
+
+<p>How to implement per-process page tables:</p>
+
+<ul>
+<li><p><code>process_setup</code> should allocate a new, initially-empty page table for
+each process by calling <code>kalloc</code>.</p></li>
+
+<li><p>Copy the mappings from <code>kernel_pagetable</code> into this new page table. The
+purpose of this step is to ensure that the required kernel mappings are
+present in the new page table. You can do this using a loop with two
+<code>vmiter</code>s; or you can set the mappings yourself (they are identity
+mappings); or, if you’re feeling crazy, you can set up the new page table
+yourself without using <code>vmiter</code> (that will show you really understand page
+tables!).</p></li>
+
+<li><p>Then you will need to make sure that any page that <strong>belongs</strong> to the
+process is mapped as user-accessible. These are the pages the process needs
+to access, including its code, data, stack, and heap segments. There are
+several places you’ll need to change.</p></li>
+</ul>
+
+<p>Note the diagram now has four pages for each process in the <em>kernel</em> area,
+starting at 0x1000. These are the four-level page tables for each process.
+(The dark blue background indicates that these pages contain kernel-private
+page table data, even though the pages “belong” to the process.) The first
+page was allocated explicitly in <code>process_setup</code>; the other pages were
+allocated by <code>vmiter::map</code> as needed to fill out the page table.</p>
+
+<p>One common solution, shown above, leaves addresses above <code>PROC_START_ADDR</code>
+totally unmapped by default, but that’s not the only valid choice. As long as
+a virtual address mapping has no <code>PTE_U</code> bit, its process isolation properties
+are unchanged. For instance, this solution, in which all mappings are present
+but accessible only to the kernel, also implements process isolation
+correctly:</p>
+
+<p></p><figure><img src="docs_files/memos-isolated2.gif" alt="Per-process isolation, alternate"></figure><p></p>
+
+<p>If you create an incorrect page table, WeensyOS might crazily reboot.
+Don’t panic; see the debugging hints above.</p>
+
+<h2 id="step-3-virtual-page-allocation">Step 3: Virtual page allocation</h2>
+
+<p>So far, WeensyOS processes use <em>physical page allocation</em> for process memory:
+Process code, data, stack, and heap pages with virtual address X always use
+the physical pages with physical address X. This is inflexible and limits
+utilization.</p>
+
+<p>Change your operating system to call <code>kalloc</code> instead of
+<code>kalloc_physical_page</code> for process data. No calls to <code>kalloc_physical_page</code>
+should remain (and you can remove it from your source code).</p>
+
+<p>Here’s how our OS looks after this step.</p>
+
+<p></p><figure><img src="docs_files/memos-virtual.gif" alt="Virtual page allocation"></figure><p></p>
+
+<p>Virtual page allocation will complicate the code that initializes process code
+in <code>process_setup</code>. You’ll need to figure out why (hint: which page table is
+in force in <code>process_setup</code>?) and find a way around it.</p>
+
+<h2 id="step-4-overlapping-address-spaces">Step 4: Overlapping address spaces</h2>
+
+<p>Now the processes are isolated, which is awesome, but they’re still not
+taking full advantage of virtual memory. Isolated address spaces can use
+<em>the same</em> virtual addresses for <em>different</em> physical
+memory. There’s no need to keep the four process address spaces
+disjoint.</p>
+
+<p>In this step, change each process’s stack to start from address
+<code>0x300000 == MEMSIZE_VIRTUAL</code>. Now the processes have enough heap room
+to use up all of physical memory!</p>
+
+<p></p><figure><img src="docs_files/memos-overlapping.gif" alt="Overlapping address spaces"></figure><p></p>
+
+<p>If there’s no physical memory available, <code>sys_page_alloc</code> should return an
+error to the caller (by returning -1). (If you want, you can also print “<code>Out
+of physical memory!</code>” or something to the console; you don’t need to.)</p>
+
+<h2 id="step-5-fork">Step 5: Fork</h2>
+
+<p>The <code>fork</code> system call is one of Unix’s great ideas. It starts a new
+process as a <em>copy</em> of an existing process. The <code>fork</code> system call
+appears to return twice, once to each process. To the child process, it
+returns 0. To the parent process, it returns the child’s process ID.</p>
+
+<p>Run WeensyOS with <code>make run</code> or <code>make run-console</code>. At any time, press
+the ‘<code>f</code>’ key. This will soft-reboot WeensyOS and ask it to run a single
+<code>p-fork</code> process, rather than the gang of <code>allocator</code>s. You should see
+something like this:</p>
+
+<p></p><figure><img src="docs_files/memos-forkinitial.gif" alt="Initial fork state"></figure><p></p>
+
+<p>This is because you haven’t implemented <code>fork</code> yet.</p>
+
+<p>Implement <code>fork</code>.</p>
+
+<ul>
+<li><p>When a process calls <code>fork</code>, look for a free process slot in the
+<code>ptable[]</code> array. Don’t use slot 0. If no slot exists, return
+<code>-1</code> to the caller.</p></li>
+
+<li><p>If a free slot is found, make a copy of <code>current-&gt;pagetable</code>, the
+forking process’s page table, for the child.</p></li>
+
+<li><p>But you must also copy the <em>process data</em> in every application page
+shared by the two processes. The processes should not share any
+writable memory except the console (otherwise they wouldn’t be
+isolated). So <code>fork</code> must examine every virtual address in the old
+page table. Whenever the parent process has an application-writable
+page at virtual address <code>V</code>, then <code>fork</code> must allocate a new
+physical page <code>P</code>; copy the data from the parent’s page into <code>P</code>,
+using <code>memcpy</code>; and finally map page <code>P</code> at address <code>V</code> in the child
+process’s page table.</p></li>
+
+<li><p>The child process’s registers are initialized as a copy of the
+parent process’s registers, except for <code>reg_rax</code>.</p></li>
+</ul>
+
+<p>When you’re done, you should see something like this after pressing
+‘<code>f</code>’.</p>
+
+<p></p><figure><img src="docs_files/memos-fork.gif" alt="Fork works"></figure><p></p>
+
+<p>An image like this means you forgot to copy the data for some pages, so
+the processes are actually <em>sharing</em> stack and/or data pages:</p>
+
+<p></p><figure><img src="docs_files/memos-badfork.gif" alt="Incorrect fork"></figure><p></p>
+
+<h2 id="step-6-shared-readonly-memory">Step 6: Shared read-only memory</h2>
+
+<p>It’s wasteful for <code>fork()</code> to copy <em>all</em> of a process’s memory. For
+example, most processes, including <code>p-fork</code>, never change their code. So
+what if we shared the memory containing the code? That’d be fine for
+process isolation, as long as neither process could write the code.</p>
+
+<p>Change the process loader to map <em>read-only</em> program segments using read-only
+memory. Use the <code>program_loader::writable()</code> function (<code>loader.writable()</code> in
+context) to detect whether a program segment can use read-only memory. Then,
+in <code>fork</code>, share read-only pages between processes rather than copying them.</p>
+
+<p>When you’re done, running <code>p-fork</code> should look like this:</p>
+
+<p></p><figure><img src="docs_files/memos-sharedreadonly.gif" alt="Shared read-only memory"></figure><p></p>
+
+<p>Each process’s virtual address space begins with a dark-colored “S”,
+indicating that the corresponding physical page is <code>S</code>hared by multiple
+processes. (The color difference is only visible on graphical QEMU; the
+console version doesn’t distinguish between light reverse-video and dark
+reverse-video.)</p>
+
+<h2 id="step-7-freeing-memory">Step 7: Freeing memory</h2>
+
+<p>So far none of your test programs have ever freed memory or exited.
+Memory allocation’s pretty easy until you add free! So let’s do that,
+by allowing applications to exit. In this exercise you’ll implement the
+<code>sys_exit</code> system call, which exits the current process.</p>
+
+<p>This exercise is a capstone since freeing memory will tend to expose
+weaknesses and problems in your other code.</p>
+
+<p>To test your work, use <code>make run</code> and then type ‘<code>e</code>’. This reboots
+WeensyOS to run the <code>p-forkexit</code> program. (Initially it’ll crash because
+<code>sys_exit()</code> isn’t implemented yet.) <code>p-forkexit</code> combines two types of
+behavior:</p>
+
+<ul>
+<li><p>Process 1 forks children indefinitely.</p></li>
+
+<li><p>The child processes, #2 and up, are memory allocators, as in the
+previous parts of the pset. But with small probability at each step,
+each child process either exits or attempts to fork a new child.</p></li>
+</ul>
+
+<p>The result is that once your code is correct, <code>p-forkexit</code> makes crazy
+patterns forever. An example:</p>
+
+<p></p><figure><img src="docs_files/memos-forkexit.gif" alt="Fork with exit"></figure><p></p>
+
+<p>A fully correct OS can run <code>p-forkexit</code> indefinitely. If you reduce
+<code>ALLOC_SLOWDOWN</code> in <code>p-forkexit</code>, even rare errors should turn up within a
+minute or two.</p>
+
+<p>Here’s your task.</p>
+
+<ul>
+<li><p><code>sys_exit</code> should mark a process as free and free all of its memory. This
+includes the process’s code, data, heap, and stack pages, as well as the
+pages used for its page directory and page table pages. The memory should
+become available again for future allocations.</p>
+
+<p>Use <code>vmiter</code> and <code>ptiter</code> to enumerate the relevant pages. But be careful
+not to free the console. Also, don’t free any shared pages until they are
+totally unused (the last sharing process exits)!</p>
+
+<p>You will need to change the <code>pageinfo</code> structure (the type of <code>pages</code>
+entries), <code>kalloc</code>, <code>fork</code>, and perhaps other places to support this
+fully. Think about all the places that allocate or share memory: what
+information must they maintain?</p></li>
+
+<li><p>In <code>p-forkexit</code>, unlike in previous parts of the pset, <code>sys_fork</code> and
+<code>sys_page_alloc</code> can run when there isn’t quite enough memory to create a
+new process or allocate a page. Your code should handle this cleanly,
+without leaking memory. If there isn’t enough free memory to allocate a
+process, <code>fork()</code> should clean up after itself (i.e., free any memory that
+was allocated for the new process before memory ran out), and then return
+<code>-1</code> to the caller.</p></li>
+</ul>
+
+<p><strong>There should be no memory leaks!</strong> (A memory leak will show up as a blank
+spot on the memory map that never gets used.) Remember that <code>vmiter::map</code> can
+fail if memory is low.</p>
+
+<h2 id="extra-credit">Extra credit</h2>
+
+<p>If you are finished and can't wait to do more of this type of work, try:</p>
+
+<ul>
+<li><p>Copy-on-write page allocation!</p></li>
+
+<li><p>Write more system calls and test programs! Some ideas:</p>
+
+<ul>
+<li><p><code>sys_page_alloc</code> is like a restricted <code>mmap</code> system call: the user
+always defines where the page lives (so <code>addr == nullptr</code> is not
+supported), the system call allocates exactly one page (so <code>sz ==
+PAGESIZE</code> always), and the map is copied when a process forks (so the
+flags are like <code>MAP_ANON | MAP_PRIVATE</code> and the protection is <code>PROT_READ
+| PROT_WRITE | PROT_EXEC</code>). Eliminate some of these restrictions by
+passing more arguments to the kernel and extending the
+<code>SYSCALL_PAGE_ALLOC</code> implementation.</p></li>
+
+<li><p>Implement <code>sys_page_free</code>/<code>munmap</code>.</p></li>
+
+<li><p>Implement a system call that puts the calling process to sleep until a
+given amount of time has elapsed, as measured by <code>ticks</code> (which counts
+timer interrupts).</p></li>
+
+<li><p>Implement a <code>kill</code> system call that lets one process kill others!</p></li>
+</ul>
+
+<p>You will need to write a new test program to test this functionality.</p>
+
+<div class="has-solution"><blockquote class="solution-collapsed js-solution show"><a href="" class="js-solution show">Show instructions for writing test programs</a></blockquote><blockquote class="hidden solution" data-hide-text="Hide instructions" data-show-text="Show instructions for writing test programs">
+<h3 id="how-to-write-a-new-test-program">How to write a new test program</h3>
+
+<ol>
+<li>Run <code>git pull handout master</code> or equivalent to ensure you’re using our
+latest code (you need commit 2badb947).</li>
+<li>Choose a name for your test program. We’ll assume <code>testprogram</code> for this example.</li>
+<li>Create a C++ file <code>p-testprogram.cc</code> for your test program.
+You will base this file off one of the existing programs (<code>p-allocator.cc</code>,
+<code>p-fork.cc</code>, or <code>p-forkexit.cc</code>).</li>
+<li>Modify <code>GNUmakefile</code> to build your test program: add
+<code>$(OBJ)/p-testprogram</code> to the <code>PROCESS_BINARIES</code> definition, and
+<code>$(OBJ)/p-testprogram.o</code> to the <code>PROCESS_OBJS</code> definition.</li>
+<li>Teach the <code>program_loader</code> about your test program. Look for
+<code>program_loader</code> code in <code>k-hardware.cc</code>. Then add declarations for
+<code>_binary_obj_p_testprogram_start</code> and <code>_binary_obj_p_testprogram_end</code>,
+and add the appropriate entry to the <code>ramimages</code> array.</li>
+
+<li><p>Teach <code>check_keyboard</code> in <code>k-hardware.cc</code> about your program. Pick a
+keystroke that should
+correspond to your program and edit the “soft reboot process” accordingly.
+For instance:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">  <span style="color:#007020;font-weight:bold">if</span> (c <span style="color:#666">==</span> <span style="color:#4070a0"></span><span style="color:#4070a0">'a'</span>) {
+      argument <span style="color:#666">=</span> <span style="color:#4070a0"></span><span style="color:#4070a0">"allocator"</span>;
+  } <span style="color:#007020;font-weight:bold">else</span> <span style="color:#007020;font-weight:bold">if</span> (c <span style="color:#666">==</span> <span style="color:#4070a0"></span><span style="color:#4070a0">'e'</span>) {
+      argument <span style="color:#666">=</span> <span style="color:#4070a0"></span><span style="color:#4070a0">"forkexit"</span>;
+  } <span style="color:#007020;font-weight:bold">else</span> <span style="color:#007020;font-weight:bold">if</span> (c <span style="color:#666">==</span> <span style="color:#4070a0"></span><span style="color:#4070a0">'t'</span>) {
+      argument <span style="color:#666">=</span> <span style="color:#4070a0"></span><span style="color:#4070a0">"testprogram"</span>;
+  }</code></pre></div></li>
+
+<li><p>Teach the <code>kernel()</code> function in <code>kernel.cc</code> about your program.
+Replace the current <code>if (command...)</code> statements with this:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">  <span style="color:#007020;font-weight:bold">if</span> (command <span style="color:#666">&amp;&amp;</span> program_loader<span style="color:#666">::</span>program_number(command) <span style="color:#666">&gt;</span> <span style="color:#40a070">0</span>) {
+      process_setup(<span style="color:#40a070">1</span>, program_loader<span style="color:#666">::</span>program_number(command));
+  } <span style="color:#007020;font-weight:bold">else</span> {
+      <span style="color:#60a0b0;font-style:italic">// ... set up allocator processes ...
+</span><span style="color:#60a0b0;font-style:italic"></span>  }</code></pre></div>
+<p>(This only needs to be done once, for the first test program you add.)</p></li>
+</ol>
+
+<p>Now you should be able to run your test program by typing <code>t</code>.</p>
+<p><a href="" class="js-solution hide">Hide instructions</a></p></blockquote></div></li>
+</ul>
+
+<h2 id="turnin">Turnin</h2>
+
+<p>You will turn in your code by <strong>pushing your git repository to
+github.com/cs61/YOUR-PSET_REPO.git</strong> and updating the <a href="https://cs61.seas.harvard.edu/grade/cs61-2018/">grading
+server</a>.</p>
+
+    </div>
+</div>
+
+        <script src="docs_files/jquery-3.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="docs_files/popper.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="docs_files/bootstrap.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="docs_files/katex.js" integrity="sha384-O4hpKqcplNCe+jLuBVEXC10Rn1QEqAmX98lKAIFBEDxZI0a+6Z2w2n8AEtQbR4CD" crossorigin="anonymous"></script>
+        <script>(function () {
+        $(".math").each(function () {
+            var t = this.innerText,
+                opt = {throwOnError: false, displayMode: t.substr(0, 2) === "\\["};
+            katex.render(t.replace(/(?:^\\\(|^\\\[|\\\)$|\\\]$)/g, ""), this, opt);
+        });
+        function sol_toggle(sol, hide, storage) {
+            sol.childNodes[0].classList.toggle("hidden", !hide);
+            sol.childNodes[0].classList.toggle("shown", hide);
+            sol.childNodes[1].classList.toggle("hidden", hide);
+            sol.childNodes[1].classList.toggle("shown", !hide);
+            if (storage) {
+                var key = location.href + " " + $(".has-solution").index(sol);
+                if (hide)
+                    sessionStorage.removeItem(key);
+                else
+                    sessionStorage.setItem(key, true);
+            }
+        }
+        $(".solution").each(function () {
+            $(this).wrap('<div class="has-solution"></div>');
+            var sol = this.parentElement;
+            $(sol).prepend('<blockquote class="solution-collapsed js-solution show"><a href="" class="js-solution show"></a></blockquote>');
+            $(this).append('<p><a href="" class="js-solution hide"></a></p>');
+            $(sol).find("a.js-solution.show").text(this.getAttribute("data-show-text") || "Show solution");
+            $(sol).find("a.js-solution.hide").text(this.getAttribute("data-hide-text") || "Hide solution");
+            var key = location.href + " " + $(".has-solution").index(sol);
+            if (sessionStorage.getItem(key))
+                sol_toggle(sol, false, false);
+        });
+        $(document).on("click", ".js-solution", function (event) {
+            if (this.classList.contains("all")) {
+                var hide = this.classList.contains("hide");
+                $(".has-solution").each(function () {
+                    sol_toggle(this, hide, false);
+                });
+                var bq = this.tagName === "BLOCKQUOTE" ? this : this.parentElement;
+                $(bq).find(".show").toggleClass("hidden", !hide);
+                $(bq).find(".hide").toggleClass("hidden", hide);
+            } else {
+                var sol = $(this).closest(".has-solution")[0];
+                sol_toggle(sol, this.classList.contains("hide"), true);
+            }
+            event.preventDefault();
+            event.stopPropagation();
+        });
+        })()</script>
+    
+
+
+<table style="width: 140px; display: none; top: 48px; position: absolute; left: 518px;" class="gstl_50 gssb_c" cellspacing="0" cellpadding="0"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body></html>

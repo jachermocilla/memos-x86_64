@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="discuss_files/bootstrap.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="discuss_files/katex.css" integrity="sha384-VEnyslhHLHiYPca9KFkBB3CMeslnM9CzwjxsEbZTeA21JBm7tdLwKoZmCt3cZTYD" crossorigin="anonymous">
+    <link rel="stylesheet" href="discuss_files/cs161.css">
+    <title>Section 4 – CS 61 2018</title>
+  <script async="" src="discuss_files/async-ads.js"></script><script src="discuss_files/cse_element__en.js" type="text/javascript"></script><link type="text/css" rel="stylesheet" href="discuss_files/defaulten.css"><link type="text/css" rel="stylesheet" href="discuss_files/default.css"><style type="text/css">.gsc-control-cse{font-family:arial, sans-serif}.gsc-control-cse .gsc-table-result{font-family:arial, sans-serif}.gsc-control-cse{border-color:#FFFFFF;background-color:#FFFFFF}input.gsc-input,.gsc-input-box,.gsc-input-box-hover,.gsc-input-box-focus{border-color:#D9D9D9}.gsc-search-button-v2,.gsc-search-button-v2:hover,.gsc-search-button-v2:focus{border-color:#666666;background-color:#CECECE;background-image:none;filter:none}.gsc-search-button-v2 svg{fill:#FFFFFF}.gsc-tabHeader.gsc-tabhInactive{border-color:#CCCCCC;background-color:#FFFFFF}.gsc-tabHeader.gsc-tabhActive{border-color:#CCCCCC;border-bottom-color:#FFFFFF;background-color:#FFFFFF}.gsc-tabsArea{border-color:#CCCCCC}.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{border-color:#FFFFFF;background-color:#FFFFFF}.gsc-webResult.gsc-result:hover,.gsc-imageResult:hover{border-color:#FFFFFF;background-color:#FFFFFF}.gs-webResult.gs-result a.gs-title:link,.gs-webResult.gs-result a.gs-title:link b,.gs-imageResult a.gs-title:link,.gs-imageResult a.gs-title:link b{color:#0000CC}.gs-webResult.gs-result a.gs-title:visited,.gs-webResult.gs-result a.gs-title:visited b,.gs-imageResult a.gs-title:visited,.gs-imageResult a.gs-title:visited b{color:#0000CC}.gs-webResult.gs-result a.gs-title:hover,.gs-webResult.gs-result a.gs-title:hover b,.gs-imageResult a.gs-title:hover,.gs-imageResult a.gs-title:hover b{color:#0000CC}.gs-webResult.gs-result a.gs-title:active,.gs-webResult.gs-result a.gs-title:active b,.gs-imageResult a.gs-title:active,.gs-imageResult a.gs-title:active b{color:#0000CC}.gsc-cursor-page{color:#0000CC}a.gsc-trailing-more-results:link{color:#0000CC}.gs-webResult .gs-snippet,.gs-imageResult .gs-snippet,.gs-fileFormatType{color:#000000}.gs-webResult div.gs-visibleUrl,.gs-imageResult div.gs-visibleUrl{color:#008000}.gs-webResult div.gs-visibleUrl-short{color:#008000}.gs-webResult div.gs-visibleUrl-short{display:none}.gs-webResult div.gs-visibleUrl-long{display:block}.gs-promotion div.gs-visibleUrl-short{display:none}.gs-promotion div.gs-visibleUrl-long{display:block}.gsc-cursor-box{border-color:#FFFFFF}.gsc-results .gsc-cursor-box .gsc-cursor-page{border-color:#CCCCCC;background-color:#FFFFFF;color:#0000CC;}.gsc-results .gsc-cursor-box .gsc-cursor-current-page{border-color:#CCCCCC;background-color:#FFFFFF;color:#0000CC;}.gsc-webResult.gsc-result.gsc-promotion{border-color:#336699;background-color:#FFFFFF}.gsc-completion-title{color:#0000CC}.gsc-completion-snippet{color:#000000}.gs-promotion a.gs-title:link,.gs-promotion a.gs-title:link *,.gs-promotion .gs-snippet a:link{color:#0000CC}.gs-promotion a.gs-title:visited,.gs-promotion a.gs-title:visited *,.gs-promotion .gs-snippet a:visited{color:#0000CC}.gs-promotion a.gs-title:hover,.gs-promotion a.gs-title:hover *,.gs-promotion .gs-snippet a:hover{color:#0000CC}.gs-promotion a.gs-title:active,.gs-promotion a.gs-title:active *,.gs-promotion .gs-snippet a:active{color:#0000CC}.gs-promotion .gs-snippet,.gs-promotion .gs-title .gs-promotion-title-right,.gs-promotion .gs-title .gs-promotion-title-right *{color:#000000}.gs-promotion .gs-visibleUrl,.gs-promotion .gs-visibleUrl-short{color:#008000}.gcsc-find-more-on-google{color:#0000CC}.gcsc-find-more-on-google-magnifier{fill:#0000CC}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-moz-user-select:none;white-space:nowrap}.gsst_e{vertical-align:middle;opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gssb_a{padding:0 9px}.gsib_a{padding-right:8px;padding-left:8px}.gsst_a{padding-top:5.5px}.gssb_e{border:0}.gssb_l{margin:5px 0}input.gsc-input::-webkit-input-placeholder{font-size:14px}input.gsc-input:-moz-placeholder{font-size:14px}input.gsc-input::-moz-placeholder{font-size:14px}input.gsc-input:-ms-input-placeholder{font-size:14px}input.gsc-input:focus::-webkit-input-placeholder{color:transparent}input.gsc-input:focus:-moz-placeholder{color:transparent}input.gsc-input:focus::-moz-placeholder{color:transparent}input.gsc-input:focus:-ms-input-placeholder{color:transparent}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style></head>
+  <body>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="https://cs61.seas.harvard.edu/site/">CS 61 2018</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-dropdown-" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Info
+    </a>
+    <div class="dropdown-menu" aria-labelledby="nav-dropdown-">
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Concepts/">Concepts</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/CourseDescription/">Course Description</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Staff/">Course Staff</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Extension/">Extension</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/ZoomOH/">Extension School Zoom Office Hours</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Prerequisites/">Prerequisites</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Resources/">Resources</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Schedule/">Schedule</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Style/">Style</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Textbook/">Textbook</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Infrastructure/">Infrastructure</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/DatarepEx/">Exercises: Data representation</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/AsmEx/">Exercises: Assembly</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/StorageEx/">Exercises: Storage</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/KernelEx/">Exercises: Kernel</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/ShellEx/">Exercises: Shell</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/SynchEx/">Exercises: Synchronization</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/MiscEx/">Exercises: Miscellaneous</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Patterns/">C and C++ Patterns</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/diff/">Diff</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/file-descriptors/">File Descriptors</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/gdb-commands/">GDB Commands</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/gdb/">GDB Introduction</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/git/">Git</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/ref/http/">HTTP</a>
+    
+    </div>
+  </li>
+
+      
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-dropdown-" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Problem sets
+    </a>
+    <div class="dropdown-menu" aria-labelledby="nav-dropdown-">
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Dmalloc/">Problem set 1</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/BinaryBomb/">Problem set 2</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Stdio/">Problem set 3</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/WeensyOS/">Problem set 4</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Shell/">Problem set 5</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Pong/">Problem set 6</a>
+    
+    </div>
+  </li>
+
+      
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-dropdown-" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Lectures
+    </a>
+    <div class="dropdown-menu" aria-labelledby="nav-dropdown-">
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Datarep2/">Data representation 2: Object representation</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Datarep3/">Data representation 3: Layout</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Datarep4/">Data representation 4: Pointers and undefined behavior</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Datarep5/">Data representation 5: Undefined behavior, bitwise operations, arena allocation</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Datarep6/">Data representation 6: Arena allocation</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Asm1/">Assembly 1: Basics</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Asm2/">Assembly 2: Calling convention</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Asm3/">Assembly 3: Optimizations and assembly</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Asm4/">Assembly 4: Buffer overflows</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Storage1/">Storage 1: Caches</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Storage2/">Storage 2: Cache model</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Storage3/">Storage 3: Stdio cache</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Storage4/">Storage 4: Consistency</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Kernel1/">Kernel 1: Robustness and safety</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Kernel2/">Kernel 2: Process isolation and virtual memory</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Kernel3/">Kernel 3: x86-64 page tables and WeensyOS</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Kernel4/">Kernel 4: Protection and isolation</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Kernel5/">Kernel 5: Confused deputy attack, scheduling, and process management</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Shell1/">Shell 1: Process control</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Shell2/">Shell 2: Process creation and interprocess communication</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Shell3/">Shell 3: Sieve of Eratosthenes, polling vs. blocking</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Synch1/">Synchronization 1: Signals, race condition, threads</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Synch2/">Synchronization 2: Mutex, bounded buffers</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Synch3/">Synchronization 3: Mutexes, condition variables, and compare-exchange</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Synch4/">Synchronization 4: Networking and Synchronization</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Synch5/">Synchronization 5: Deadlock and Server Programming</a>
+    
+    </div>
+  </li>
+
+      
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-dropdown-" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Sections
+    </a>
+    <div class="dropdown-menu" aria-labelledby="nav-dropdown-">
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section1/">Section 1</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section2/">Section 2</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section3/">Section 3</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section4/">Section 4</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section5/">Section 5</a>
+    
+      <a class="dropdown-item" href="https://cs61.seas.harvard.edu/site/2018/Section6/">Section 6</a>
+    
+    </div>
+  </li>
+
+      
+      <li class="nav-item"><script type="text/javascript" async="" src="discuss_files/cse.js"></script><script>
+  (function() {
+    var cx = '001870065194094800801:cru2ukzhywq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script><div id="___gcse_0"><div class="gsc-control-cse gsc-control-cse-en"><div class="gsc-control-wrapper-cse" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table class="gsc-search-box" cellspacing="0" cellpadding="0"><tbody><tr><td class="gsc-input"><div class="gsc-input-box" id="gsc-iw-id1"><table style="width: 100%; padding: 0px;" id="gs_id50" class="gstl_50 gsc-input" cellspacing="0" cellpadding="0"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" style="width: 100%; padding: 0px; border: medium none; margin: 0px; height: auto; outline: currentcolor none medium;" id="gsc-i-id1" dir="ltr" spellcheck="false"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;" title="Clear search box" role="button"><span class="gscb_a" id="gs_cb50" aria-hidden="true">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>search</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table></form><div class="gsc-results-wrapper-overlay"><div class="gsc-results-close-btn" tabindex="0"></div><div class="gsc-tabsAreaInvisible"><div class="gsc-tabHeader gsc-inline-block gsc-tabhActive">Custom Search</div><span class="gs-spacer"> </span></div><div class="gsc-tabsAreaInvisible"></div><div class="gsc-above-wrapper-area-invisible"><table class="gsc-above-wrapper-area-container" cellspacing="0" cellpadding="0"><tbody><tr><td class="gsc-result-info-container"><div class="gsc-result-info-invisible"></div></td><td class="gsc-orderby-container"><div class="gsc-orderby-invisible"><div class="gsc-orderby-label gsc-inline-block">Sort by:</div><div class="gsc-option-menu-container gsc-inline-block"><div class="gsc-selected-option-container gsc-inline-block"><div class="gsc-selected-option">Relevance</div><div class="gsc-option-selector"></div></div><div class="gsc-option-menu-invisible"><div class="gsc-option-menu-item gsc-option-menu-item-highlighted"><div class="gsc-option">Relevance</div></div><div class="gsc-option-menu-item"><div class="gsc-option">Date</div></div></div></div></div></td></tr></tbody></table></div><div class="gsc-adBlockInvisible"></div><div class="gsc-wrapper"><div class="gsc-adBlockInvisible"></div><div class="gsc-resultsbox-invisible"><div class="gsc-resultsRoot gsc-tabData gsc-tabdActive"><table class="gsc-resultsHeader" cellspacing="0" cellpadding="0"><tbody><tr><td class="gsc-twiddleRegionCell"><div class="gsc-twiddle"><div class="gsc-title">Web</div></div><div class="gsc-stats"></div><div class="gsc-results-selector gsc-all-results-active"><div class="gsc-result-selector gsc-one-result" title="show one result">&nbsp;</div><div class="gsc-result-selector gsc-more-results" title="show more results">&nbsp;</div><div class="gsc-result-selector gsc-all-results" title="show all results">&nbsp;</div></div></td><td class="gsc-configLabelCell"></td></tr></tbody></table><div><div class="gsc-expansionArea"></div></div></div></div></div></div><div class="gsc-modal-background-image" tabindex="0"></div></div></div></div></li>
+    </ul>
+  </div>
+</nav>
+
+
+<img src="discuss_files/cs61hello.jpg" class="hellobackground">
+
+
+<div class="container">
+    <h1><a href="https://cs61.seas.harvard.edu/site/2018/Section4/">Section 4</a></h1>
+    <div class="post">
+        <h2 id="process-isolation-and-virtual-memory">Process isolation and virtual memory</h2>
+
+<p>We don’t want processes to be able to trample over the memory of
+other processes, as discussed in class. So, we need
+process isolation.
+Virtual memory is a mechanism for the OS to provide process isolation.
+Today’s section will be focused on diving deeper into virtual memory.</p>
+
+<p>When you print a pointer in C program, you see the pointer’s virtual address
+in that process’s address space. The actual place where the underlying bytes
+live is in <strong>physical memory</strong>, at an address only known to the OS. This
+address can be determined using the process’s <strong>page table</strong> (which maps
+virtual addresses to physical addresses). This page table is set up by the
+operating system <strong>kernel</strong>, and interpreted by the processor hardware.</p>
+
+<h2 id="multilevel-page-tables">Multi-level page tables</h2>
+
+<p>Many processors, including x86-64, use <strong>multi-level page tables</strong> to
+translate virtual addresses to physical addresses. A multi-level page table is
+structured in a tree format. The root of the tree is configured via a register
+(<code>%cr3</code> on x86-64); the root’s entries point to lower-level page tables. The
+virtual address being looked up provides the index of the entry to follow at
+each level of the pagetable. We are going to walk through how the pagetable
+structure can be determined from the page size and address size.</p>
+
+<h3 id="example-x8632">Example: x86-32</h3>
+
+<p>On 32-bit x86 architecture (virtual addresses are 32 bits long), each page is
+4096 = 2<sup>12</sup> bytes. Each physical page contains 2<sup>12</sup>
+separate addresses, and the architecture supports up to 2<sup>20</sup> =
+2<sup>32</sup> / 2<sup>12</sup> virtual pages.</p>
+
+<p><strong>QUESTION:</strong> What is the size of the offset for an x86-32 address?</p>
+
+<div class="has-solution"><blockquote class="solution-collapsed js-solution show hidden"><a href="" class="js-solution show">Show solution</a></blockquote><blockquote class="solution shown">
+<p>12 bits.</p>
+<p><a href="" class="js-solution hide">Hide solution</a></p></blockquote></div>
+
+<p><strong>QUESTION:</strong> How many 32-bit addresses can fit in an x86-32 page?</p>
+
+<div class="has-solution"><blockquote class="solution-collapsed js-solution show hidden"><a href="" class="js-solution show">Show solution</a></blockquote><blockquote class="solution shown">
+<p>2<sup>12</sup> / 4 = 2<sup>10</sup> = 1024.</p>
+<p><a href="" class="js-solution hide">Hide solution</a></p></blockquote></div>
+
+<p><strong>QUESTION:</strong> Assume that x86-32 used a <strong>single-level</strong> page table (like the
+page table from the Kernel 2 lecture with 6-bit addresses). Such a page table
+is indexed by the top portion of the address—everything but the offset. That
+means it must occupy enough contiguous physical memory to account for every
+possible index. How big would the single-level page table be?</p>
+
+<div class="has-solution"><blockquote class="solution-collapsed js-solution show hidden"><a href="" class="js-solution show">Show solution</a></blockquote><blockquote class="solution shown">
+<p>2<sup>32</sup> addresses / 2<sup>12</sup> addresses/page * 2<sup>2</sup>
+bytes/page table entry = 2<sup>22</sup> bytes of page table.</p>
+<p><a href="" class="js-solution hide">Hide solution</a></p></blockquote></div>
+
+<p>x86-32 does <em>not</em> use a single-level page table. It uses a two-level page
+table. The x86-32 address divides into three sections: level-2 index, level-1
+index, and offset.</p>
+
+<table class="wikitable">
+<thead>
+<tr>
+<th align="center">bits 31-22</th>
+<th align="center">bits 21-12</th>
+<th align="center">bits 11-0</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">Level 2 index</td>
+<td align="center">Level 1 index</td>
+<td align="center">Offset</td>
+</tr>
+</tbody>
+</table>
+
+<p>The address of the level-2 page table is stored in the x86-32 <code>%cr3</code> register.
+This page table is indexed by level 2 index to find the <em>physical</em> address of
+a level-1 page table; there can be many of these, one per level-2 index. The
+level-1 page table is indexed by level 1 index to find the physical address of
+the final physical page.</p>
+
+<p><strong>QUESTION:</strong> Why is 10 bits per level the correct number?</p>
+
+<div class="has-solution"><blockquote class="solution-collapsed js-solution show hidden"><a href="" class="js-solution show">Show solution</a></blockquote><blockquote class="solution shown">
+<p>10 bits = 2<sup>10</sup> entries. 2<sup>10</sup> entries * 4 bytes/entry =
+2<sup>12</sup> bytes = the number of bytes on a page. This division means
+that page tables naturally break into units of single pages, which makes
+page management convenient.</p>
+<p><a href="" class="js-solution hide">Hide solution</a></p></blockquote></div>
+
+<p><strong>QUESTION:</strong> What is the minimum number of page table pages necessary to
+provide access to 2<sup>20</sup> different bytes of physical memory?</p>
+
+<div class="has-solution"><blockquote class="solution-collapsed js-solution show hidden"><a href="" class="js-solution show">Show solution</a></blockquote><blockquote class="solution shown">
+<p>2<sup>20</sup> bytes = 2<sup>8</sup> physical pages. A single level-1 page table can
+point to 2<sup>10</sup> different pages, so we only need one level-1 page
+table page. We always need a root: the level-2 page table page. So the answer
+would seem to be 2.</p>
+
+<p>But if we want to be very clever, we can actually <em>reuse</em> the level-2 page
+table page as a level-1 page table page! So the true answer is 1.</p>
+
+<p>For instance, consider a level-2 page table page, located at physical
+address 0x1000, whose index-0 entry contained physical address 0x1000!</p>
+
+<p>(This kind of reuse is occasionally useful for special purposes, but
+honestly it’s more of a party trick.)</p>
+<p><a href="" class="js-solution hide">Hide solution</a></p></blockquote></div>
+
+<p><strong>QUESTION:</strong> What is the minimum number of page tables necessary to provide
+access to 2<sup>20</sup> different <em>pages</em> of physical memory?</p>
+
+<div class="has-solution"><blockquote class="solution-collapsed js-solution show"><a href="" class="js-solution show">Show solution</a></blockquote><blockquote class="hidden solution">
+<p>2<sup>20</sup> pages requires 2<sup>10</sup> different level-1 page tables.
+So a total of 2<sup>10</sup> + 1 pages are required.</p>
+<p><a href="" class="js-solution hide">Hide solution</a></p></blockquote></div>
+
+<h3 id="moving-to-x8664">Moving to x86-64</h3>
+
+<p>x86-64 uses a similar structure, but each address consists of 48 meaningful
+bits (stored in a 64-bit, or 8-byte, number). This is so many bits that more
+levels of page table are required. x86-64 has a <strong>four</strong>-level page table,
+with addresses divided as follows:</p>
+
+<table class="wikitable">
+<thead>
+<tr>
+<th align="center">bits 63-48</th>
+<th align="center">bits 47-39</th>
+<th align="center">bits 38-30</th>
+<th align="center">bits 29-21</th>
+<th align="center">bits 20-12</th>
+<th align="center">bits 11-0</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">(ignored)</td>
+<td align="center">Level 4 index</td>
+<td align="center">Level 3 index</td>
+<td align="center">Level 2 index</td>
+<td align="center">Level 1 index</td>
+<td align="center">Offset</td>
+</tr>
+</tbody>
+</table>
+
+<p>Try working through the above problems for x86-64 (probably on your own time).
+What numbers do you get?</p>
+
+<p><strong>QUESTION:</strong> What is the maximum number of page table pages in each level?
+What is the maximum number of physical pages that are accessible with 4
+levels of the pagetable? Include both physical pages corresponding to
+virtual memory and pagetable pages.</p>
+
+<div class="has-solution"><blockquote class="solution-collapsed js-solution show"><a href="" class="js-solution show">Show solution</a></blockquote><blockquote class="hidden solution">
+<p>There is 1 level-4 pagetable. There are at most 512
+= 2^9 level-3 pagetable pages. There are most 512 * 512 = 2^18 level-2 page
+table pages. There are at most 512 * 512 * 512 = 2^27 level-1 pagetable
+pages. Each level-1 pagetable entry points to a physical page, so there
+are at most 512 * 512 * 512 * 512 = 2^36 physical pages = 2^48
+bytes pointed to by virtual memory. There are also 1 + 2^9 + 2^18 +
+2^27 pagetable pages.</p>
+<p><a href="" class="js-solution hide">Hide solution</a></p></blockquote></div>
+
+<p><strong>QUESTION:</strong> If the upper 16 bits of x86-64 addresses were meaningful, how
+many levels would the page table require?</p>
+
+<div class="has-solution"><blockquote class="solution-collapsed js-solution show"><a href="" class="js-solution show">Show solution</a></blockquote><blockquote class="hidden solution">
+<p>Six: there 16 more bits, and a level can hold at most 9 bits’ worth of
+index.</p>
+<p><a href="" class="js-solution hide">Hide solution</a></p></blockquote></div>
+
+<p><strong>QUESTION:</strong> What is the <em>minimum</em> number of physical pages required on
+x86-64 to allocate the following allocations? Draw an example pagetable
+mapping for each scenario (start from scratch each time).</p>
+
+<ol>
+<li>1 byte of memory</li>
+<li>1 allocation of size 2^12 bytes of memory</li>
+<li>2^9 allocations of size of 2^12 bytes of memory
+each</li>
+<li>2^9 + 1 allocations of size of 2^12 bytes of memory
+each</li>
+<li>2^18 + 1 allocations of size 2^12 bytes of memory
+each</li>
+</ol>
+
+<div class="has-solution"><blockquote class="solution-collapsed js-solution show"><a href="" class="js-solution show">Show solution</a></blockquote><blockquote class="hidden solution">
+<ol>
+<li>5 pages (1 per level plus the destination physical
+page)</li>
+<li>Same as part (a)</li>
+<li>2^9 + 4 pages: 1 L4, 1 L3, 1 L2, and 1 L1 pages,
+plus 2^9 physical pages</li>
+<li>2^9 + 6 pages: 1 L4, 1 L3, 1 L2, 2 L1 pages, plus
+2^9 + 1 physical pages</li>
+<li>2^18 + 518 pages: 1 L4, 1 L3, 2 L2, 513 L1 pages
+plus 2^18 + 1 physical pages</li>
+</ol>
+<p><a href="" class="js-solution hide">Hide solution</a></p></blockquote></div>
+
+<h2 id="weensyos">WeensyOS</h2>
+
+<p>The pset for this unit asks you to add to WeensyOS, an operating system that
+we’ll use in this course. WeensyOS has internal interfaces for dealing with virtual memory that we’ll now discuss.</p>
+
+<p><code>vmiter</code> and <code>ptiter</code> are iterators in WeensyOS for processing page tables.
+Vmiter helps iterate through pages in virtual memory, and lets you check the
+underlying physical pages for properties like permissions and physical
+addresses. Ptiter helps you iterate through page table pages. Let’s walk
+through the code:</p>
+
+<h3 id="vmiter">Vmiter</h3>
+
+<p>The <code>vmiter</code> class represents an iterator over virtual memory mappings. Here
+is its interface:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#60a0b0;font-style:italic">// `vmiter` walks over virtual address mappings.
+</span><span style="color:#60a0b0;font-style:italic">// `pa()` and `perm()` read current addresses and permissions;
+</span><span style="color:#60a0b0;font-style:italic">// `map()` installs new mappings.
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">vmiter</span> {
+  <span style="color:#007020;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#60a0b0;font-style:italic">// initialize a `vmiter` for `pt` pointing at `va`
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> vmiter(x86_64_pagetable<span style="color:#666">*</span> pt, uintptr_t va <span style="color:#666">=</span> <span style="color:#40a070">0</span>);
+    <span style="color:#007020;font-weight:bold">inline</span> <span style="color:#06287e">vmiter</span>(<span style="color:#007020;font-weight:bold">const</span> proc<span style="color:#666">*</span> p, uintptr_t va <span style="color:#666">=</span> <span style="color:#40a070">0</span>);
+
+    <span style="color:#007020;font-weight:bold">inline</span> uintptr_t <span style="color:#06287e">va</span>() <span style="color:#007020;font-weight:bold">const</span>;      <span style="color:#60a0b0;font-style:italic">// current virtual address
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> uint64_t <span style="color:#06287e">pa</span>() <span style="color:#007020;font-weight:bold">const</span>;       <span style="color:#60a0b0;font-style:italic">// current physical address
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> uint64_t <span style="color:#06287e">perm</span>() <span style="color:#007020;font-weight:bold">const</span>;     <span style="color:#60a0b0;font-style:italic">// current permissions
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> <span style="color:#902000">bool</span> <span style="color:#06287e">present</span>() <span style="color:#007020;font-weight:bold">const</span>;      <span style="color:#60a0b0;font-style:italic">// is va present?
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> <span style="color:#902000">bool</span> <span style="color:#06287e">writable</span>() <span style="color:#007020;font-weight:bold">const</span>;     <span style="color:#60a0b0;font-style:italic">// is va writable?
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> <span style="color:#902000">bool</span> <span style="color:#06287e">user</span>() <span style="color:#007020;font-weight:bold">const</span>;         <span style="color:#60a0b0;font-style:italic">// is va user-accessible (unprivileged)?
+</span><span style="color:#60a0b0;font-style:italic"></span>
+    <span style="color:#007020;font-weight:bold">inline</span> vmiter<span style="color:#666">&amp;</span> find(uintptr_t va);   <span style="color:#60a0b0;font-style:italic">// change virtual address to `va`
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> vmiter<span style="color:#666">&amp;</span> <span style="color:#007020;font-weight:bold">operator</span><span style="color:#666">+=</span>(intptr_t delta);  <span style="color:#60a0b0;font-style:italic">// advance `va` by `delta`
+</span><span style="color:#60a0b0;font-style:italic"></span>
+    <span style="color:#60a0b0;font-style:italic">// map current va to `pa` with permissions `perm`
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// Current va must be page-aligned. Calls kallocpage() to allocate
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// page table pages if necessary. Returns 0 on success,
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// negative on failure.
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#902000">int</span> <span style="color:#06287e">map</span>(uintptr_t pa, <span style="color:#902000">int</span> perm <span style="color:#666">=</span> PTE_P <span style="color:#666">|</span> PTE_W <span style="color:#666">|</span> PTE_U)
+        __attribute__((warn_unused_result));
+};</code></pre></div>
+<p>This type parses x86-64 page tables and manages virtual-to-physical address
+mappings. <code>vmiter(pt, va)</code> creates a <code>vmiter</code> object that’s examining virtual
+address <code>va</code> in page table <code>pt</code>. Methods on this object can return the
+corresponding physical address:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">x86_64_pagetable<span style="color:#666">*</span> pt <span style="color:#666">=</span> ...;
+uintptr_t pa <span style="color:#666">=</span> vmiter(pt, va).pa();    <span style="color:#666">//</span> returns uintptr_t(<span style="color:#666">-</span><span style="color:#40a070">1</span>) <span style="color:#007020;font-weight:bold">if</span> unmapped</code></pre></div>
+<p>Or the permissions:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007020;font-weight:bold">if</span> (vmiter(pt, va).writable()) {
+    <span style="color:#60a0b0;font-style:italic">// then `va` is present and writable (PTE_P | PTE_W) in `pt`
+</span><span style="color:#60a0b0;font-style:italic"></span>}</code></pre></div>
+<p>It’s also possible to use <code>vmiter</code> as a loop variable, calling methods
+that query its state and methods that change its current virtual address. For
+example, this loop prints all present mappings in the lower 64KiB of memory:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007020;font-weight:bold">for</span> (vmiter it(pt, <span style="color:#40a070">0</span>); it.va() <span style="color:#666">&lt;</span> <span style="color:#40a070">0x10000</span>; it <span style="color:#666">+=</span> PAGESIZE) {
+    <span style="color:#007020;font-weight:bold">if</span> (it.present()) {
+        log_printf(<span style="color:#4070a0"></span><span style="color:#4070a0">"%p maps to %p</span><span style="color:#4070a0;font-weight:bold">\n</span><span style="color:#4070a0">"</span>, it.va(), it.pa());
+    }
+}</code></pre></div>
+<p>This loop goes one page at a time (the <code>it += PAGESIZE</code> expression increases
+<code>it.va()</code> by <code>PAGESIZE</code>).</p>
+
+<p>The <code>vmiter.map()</code> function is used to <em>add</em> mappings to a page table. This
+maps physical page 0x3000 at virtual address 0x2000:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#902000">int</span> r <span style="color:#666">=</span> vmiter(pt, <span style="color:#40a070">0x2000</span>).map(<span style="color:#40a070">0x3000</span>, PTE_P <span style="color:#666">|</span> PTE_W <span style="color:#666">|</span> PTE_U);
+<span style="color:#666">//</span> r <span style="color:#666">==</span> <span style="color:#40a070">0</span> on success, r <span style="color:#666">&lt;</span> <span style="color:#40a070">0</span> on failure</code></pre></div>
+<h3 id="ptiter">Ptiter</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">ptiter</span> {
+  <span style="color:#007020;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#60a0b0;font-style:italic">// initialize a `ptiter` for `pt` pointing at `va`
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> ptiter(x86_64_pagetable<span style="color:#666">*</span> pt, uintptr_t va <span style="color:#666">=</span> <span style="color:#40a070">0</span>);
+    <span style="color:#007020;font-weight:bold">inline</span> <span style="color:#06287e">ptiter</span>(<span style="color:#007020;font-weight:bold">const</span> proc<span style="color:#666">*</span> p, uintptr_t va <span style="color:#666">=</span> <span style="color:#40a070">0</span>);
+
+    <span style="color:#007020;font-weight:bold">inline</span> uintptr_t <span style="color:#06287e">va</span>() <span style="color:#007020;font-weight:bold">const</span>;            <span style="color:#60a0b0;font-style:italic">// current virtual address
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> uintptr_t <span style="color:#06287e">last_va</span>() <span style="color:#007020;font-weight:bold">const</span>;       <span style="color:#60a0b0;font-style:italic">// one past last va covered by ptp
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> <span style="color:#902000">bool</span> <span style="color:#06287e">active</span>() <span style="color:#007020;font-weight:bold">const</span>;             <span style="color:#60a0b0;font-style:italic">// does va exist?
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> <span style="color:#902000">int</span> <span style="color:#06287e">level</span>() <span style="color:#007020;font-weight:bold">const</span>;               <span style="color:#60a0b0;font-style:italic">// current level (0-2)
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> x86_64_pagetable<span style="color:#666">*</span> <span style="color:#06287e">ptp</span>() <span style="color:#007020;font-weight:bold">const</span>;   <span style="color:#60a0b0;font-style:italic">// current page table page
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> uintptr_t <span style="color:#06287e">ptp_pa</span>() <span style="color:#007020;font-weight:bold">const</span>;        <span style="color:#60a0b0;font-style:italic">// physical address of ptp
+</span><span style="color:#60a0b0;font-style:italic"></span>
+    <span style="color:#60a0b0;font-style:italic">// move to next page table page in depth-first order
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">inline</span> <span style="color:#902000">void</span> <span style="color:#06287e">next</span>();
+};</code></pre></div>
+<p><code>ptiter</code> visits the <em>individual page table pages</em> in a multi-level page table,
+in depth-first order (so all level-1 page tables under a level-2 page table
+are visited before the level-2 is visited). A <code>ptiter</code> loop makes it easy to
+find all the page table pages owned by a process, which is usually at least 4
+page tables in x86-64 (one per level).</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007020;font-weight:bold">for</span> (ptiter it(pt, <span style="color:#40a070">0</span>); it.va() <span style="color:#666">&lt;</span> MEMSIZE_VIRTUAL; it.next()) {
+    log_printf(<span style="color:#4070a0"></span><span style="color:#4070a0">"[%p, %p): ptp at va %p, pa %p</span><span style="color:#4070a0;font-weight:bold">\n</span><span style="color:#4070a0">"</span>,
+               it.va(), it.end_va(), it.ptp(), it.ptp_pa());
+}</code></pre></div>
+<p>A WeensyOS process might print the following:</p>
+
+<pre><code>[0x0, 0x200000): ptp at va 0xb000, pa 0xb000
+[0x200000, 0x400000): ptp at va 0xe000, pa 0xe000
+[0x0, 0x40000000): ptp at va 0xa000, pa 0xa000
+[0x0, 0x8000000000): ptp at va 0x9000, pa 0x9000
+</code></pre>
+
+<p>Note the depth-first order: the level-1 page table pages are visited first,
+then level-2, then level-3. Because of this order (and other implementation
+choices), a <code>ptiter</code> loop may be used to free a page table—for instance, when
+you’re implementing process exit later :)</p>
+
+<p><code>ptiter</code> never visits the top level-4 page table page, so that will need to be
+freed independently of the <code>ptiter</code> loop.</p>
+
+<h2 id="using-iterators">Using iterators</h2>
+
+<p>On this problem set, you will implement some of the
+system calls in WeensyOS. Two of the main system calls that you will
+implement are <code>fork()</code> and <code>exit()</code>.</p>
+
+<p>The fork system call allows a process to spawn a child process that is
+essentially a copy of the parent process. The child process has a copy of the
+parent processes’ memory, and after the new child process created, both
+processes execute the next instruction after fork(). The registers and file
+descriptors are also copied.</p>
+
+<p>The exit system call allows a process to stop its execution. All of the memory
+belonging to that process, including its page table pages, are returned to the
+kernel for reuse.</p>
+
+<blockquote class="note">
+<h3 id="the-lifecycle-of-a-process">The Lifecycle of a Process</h3>
+
+<p>A process: the singular unit of life in an operating system. When a new process
+is born, it needs its own page table pages, which it gets from its parent. For
+processes not born from a <code>fork()</code> call, this parent is the
+kernel, and thus, the process's page table pages will be a copy of the kernel's.</p>
+
+<p>During the normal execution of a process, it refers to memory addresses by their
+virtual memory addresses -- which means that, to actually access the underlying
+memory, those virtual memory addresses need to be translated into physical
+addresses. Fortunately, you have just learned about the basic mechanism behind
+this process. ;)</p>
+
+<p>Once a process has completed its run, there is some cleanup to be done --
+namely, the relinquishment of its virtual memory mappings. First, the process
+needs to disassociate itself from the kernel's page table pages -- an <code>exit</code>ed
+process shouldn't need them anymore, anyway. Next, the process needs to tell the
+kernel that it is no longer using its page table pages -- this is not just the
+level-1 page table pages, but also the higher-level ones as well! Finally, the
+process can rest in peace. RIP.</p>
+</blockquote>
+
+<p><strong>QUESTION:</strong> Use <code>vmiter</code> to implement the following function.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#902000">void</span> <span style="color:#06287e">copy_mappings</span>(x86_64_pagetable<span style="color:#666">*</span> dst, x86_64_pagetable<span style="color:#666">*</span> src) {
+    <span style="color:#60a0b0;font-style:italic">// Copy all virtual memory mappings from `src` into `dst`
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// for addresses in the range [0, MEMSIZE_VIRTUAL).
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// You may assume that `dst` starts out empty (has no mappings).
+</span><span style="color:#60a0b0;font-style:italic"></span>
+    <span style="color:#60a0b0;font-style:italic">// After this function completes, for any va with
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// 0 &lt;= va &lt; MEMSIZE_VIRTUAL, dst and src should map that va
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// to the same pa with the same permissions.
+</span><span style="color:#60a0b0;font-style:italic"></span>
+
+
+
+
+
+}</code></pre></div>
+<p><strong>QUESTION:</strong> Use <code>vmiter</code> and <code>ptiter</code> to implement the following function.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#902000">void</span> <span style="color:#06287e">free_everything</span>(x86_64_pagetable<span style="color:#666">*</span> pt) {
+    <span style="color:#60a0b0;font-style:italic">// Free the following pages by passing their physical addresses
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// to `kfree_pa()`:
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// 1. All memory accessible by unprivileged mappings in `pt`.
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// 2. All page table pages that are part of `pt`.
+</span><span style="color:#60a0b0;font-style:italic"></span>
+
+
+
+
+
+}</code></pre></div>
+    </div>
+</div>
+
+        <script src="discuss_files/jquery-3.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="discuss_files/popper.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="discuss_files/bootstrap.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="discuss_files/katex.js" integrity="sha384-O4hpKqcplNCe+jLuBVEXC10Rn1QEqAmX98lKAIFBEDxZI0a+6Z2w2n8AEtQbR4CD" crossorigin="anonymous"></script>
+        <script>(function () {
+        $(".math").each(function () {
+            var t = this.innerText,
+                opt = {throwOnError: false, displayMode: t.substr(0, 2) === "\\["};
+            katex.render(t.replace(/(?:^\\\(|^\\\[|\\\)$|\\\]$)/g, ""), this, opt);
+        });
+        function sol_toggle(sol, hide, storage) {
+            sol.childNodes[0].classList.toggle("hidden", !hide);
+            sol.childNodes[0].classList.toggle("shown", hide);
+            sol.childNodes[1].classList.toggle("hidden", hide);
+            sol.childNodes[1].classList.toggle("shown", !hide);
+            if (storage) {
+                var key = location.href + " " + $(".has-solution").index(sol);
+                if (hide)
+                    sessionStorage.removeItem(key);
+                else
+                    sessionStorage.setItem(key, true);
+            }
+        }
+        $(".solution").each(function () {
+            $(this).wrap('<div class="has-solution"></div>');
+            var sol = this.parentElement;
+            $(sol).prepend('<blockquote class="solution-collapsed js-solution show"><a href="" class="js-solution show"></a></blockquote>');
+            $(this).append('<p><a href="" class="js-solution hide"></a></p>');
+            $(sol).find("a.js-solution.show").text(this.getAttribute("data-show-text") || "Show solution");
+            $(sol).find("a.js-solution.hide").text(this.getAttribute("data-hide-text") || "Hide solution");
+            var key = location.href + " " + $(".has-solution").index(sol);
+            if (sessionStorage.getItem(key))
+                sol_toggle(sol, false, false);
+        });
+        $(document).on("click", ".js-solution", function (event) {
+            if (this.classList.contains("all")) {
+                var hide = this.classList.contains("hide");
+                $(".has-solution").each(function () {
+                    sol_toggle(this, hide, false);
+                });
+                var bq = this.tagName === "BLOCKQUOTE" ? this : this.parentElement;
+                $(bq).find(".show").toggleClass("hidden", !hide);
+                $(bq).find(".hide").toggleClass("hidden", hide);
+            } else {
+                var sol = $(this).closest(".has-solution")[0];
+                sol_toggle(sol, this.classList.contains("hide"), true);
+            }
+            event.preventDefault();
+            event.stopPropagation();
+        });
+        })()</script>
+    
+
+
+<table style="width: 184px; display: none; top: 40px; left: 502px; position: absolute;" class="gstl_50 gssb_c" cellspacing="0" cellpadding="0"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body></html>
